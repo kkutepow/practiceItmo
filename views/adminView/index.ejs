@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Сеть ресторанов</title>
+        <link rel='stylesheet' href='/css/admin/admin.css' />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+    </head>
+
+    <%- include ../template/navigation_admin.ejs %>
+
+    <body>
+        <main>
+            <div class="container">
+                <div class="row margin-top-30">
+                    <div class="col s12 margin-top-30">
+                        Вы находитесь в системе управления персоналом сети ресторанов</span>
+                    </div>
+                    <div class="col s12 margin-top-30">
+                        Общее количество ресторанов - <%= restCount %></span>
+                    </div>
+                    <div class="col s12 margin-top-30">
+                        Общее количество поваров - <%= chefCount %></span>
+                    </div>
+                    <div class="col s12 margin-top-30">
+                        Для управления персоналом перейдите во вкладку <a class="button" href="/admin/chefs">Персонал</a></span>
+                    </div>
+                    <div class="col s12 margin-top-30">
+                        Вы можете зарегистрировать новый ресторан в системе, а также изменить или удалить существующий.<br>
+                        Для управления ресторанами перейдите во вкладку <a class="button" href="/admin/restaurants">Рестораны</a>
+                    </div>
+                    <div class="col s12 margin-top-30">
+                        Система может составить наиболее подходящее расписание работы текущих поваров.<br>
+                        Для составления расписания перейдите во вкладку <a class="button" href="/admin/shedule">Расписание</a></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/js/materialize.min.js"></script>
+    </body>
+</html>
