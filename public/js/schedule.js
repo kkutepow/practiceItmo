@@ -136,37 +136,41 @@ function scheduleBrushOrErase(chef, offset, brush){
 
 function getRestaurantStaff(){
     var restId = $("#rest").val();
-    $("#staff").empty();
-    $("#preloader").css("display", "block");
-    $("table.schedule").css("display", "none");
-    $.ajax({
-        type: "POST",
-        url: '/admin/getStaff',
-        data: 'id='+restId,
-        success: function (data) {
-            if (!data){ Materialize.toast('Произошла ошибка', 2000);}
-            else {
-                actualChefs = data.chefs;
-                data.chefs.forEach(function(chef, index){
-                    var inputfield = $("<div class='input-field col s4'></div>");
-                    inputfield
-                        .append($("<input type='checkbox' checked onclick='scheduleFilter("+index+", this.checked);'></input>")
-                        .attr("id", chef.chefId));
-                    inputfield
-                        .append($("<label></label>")
-                        .attr("for", chef.chefId)
-                        .text(chef.surname + " " + chef.workdays + "/" + chef.daysoff 
-                                + " (" + chef.daysBeginTime.slice(0, 2) + "-" + chef.daysEndTime.slice(0, 2) + ")"));
-                    $("#staff")
-                        .append(inputfield);
-                });
+    if (!restId){
+        Materialize.toast('Выберите ресторан', 2000);
+    } else {
+        $("#staff").empty();
+        $("#preloader").css("display", "block");
+        $("table.schedule").css("display", "none");
+        $.ajax({
+            type: "POST",
+            url: '/admin/getStaff',
+            data: 'id='+restId,
+            success: function (data) {
+                if (!data){ Materialize.toast('Произошла ошибка', 2000);}
+                else {
+                    actualChefs = data.chefs;
+                    data.chefs.forEach(function(chef, index){
+                        var inputfield = $("<div class='input-field col s4'></div>");
+                        inputfield
+                            .append($("<input type='checkbox' checked onclick='scheduleFilter("+index+", this.checked);'></input>")
+                            .attr("id", chef.chefId));
+                        inputfield
+                            .append($("<label></label>")
+                            .attr("for", chef.chefId)
+                            .text(chef.surname + " " + chef.workdays + "/" + chef.daysoff 
+                                    + " (" + chef.daysBeginTime.slice(0, 2) + "-" + chef.daysEndTime.slice(0, 2) + ")"));
+                        $("#staff")
+                            .append(inputfield);
+                    });
 
-                $("#preloader").css("display", "none");
-                $("table.schedule").css("display", "table");
-                scheduleGenerate(data.chefs, data.scheduleIsReady);
+                    $("#preloader").css("display", "none");
+                    $("table.schedule").css("display", "table");
+                    scheduleGenerate(data.chefs, data.scheduleIsReady);
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function scheduleFilter(chefIndex, show){
