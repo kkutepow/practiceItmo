@@ -56,7 +56,6 @@ function getChefInformation(fromReplaceModal){
     if (worktime < 4 || worktime > 10) {
         info.errors.push('Рабочий день должен быть в пределах от 4 до 10 часов');
     }
-    console.log(worktime);
     return info;
 }
 

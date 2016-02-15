@@ -70,7 +70,11 @@
 
         <!-- кнопка добавления !-->
         <div class="fixed-action-btn" style="bottom: 36px; right: 26px;">
+            <% if (restaurants.length > 0) { %>
             <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modalAdd"><i class="material-icons">add</i></a>
+            <% } else { %>
+            <a class="btn-floating btn-large waves-effect waves-light red" href="#" onclick="Materialize.toast('Невозможно добавить работника, т.к. в системе нет ресторанов', 2000);"><i class="material-icons">add</i></a>
+            <% } %>
         </div>
 
         <!-- модальные окна !-->
